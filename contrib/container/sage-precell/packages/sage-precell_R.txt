@@ -1,0 +1,13 @@
+"flextable",
+"formattable",
+"ggformula",
+"glmmTMB",
+"gt",
+"gtExtras",
+"huxtable",
+"kableExtra",
+"mosaic",
+"pixiedust",
+"reactable",
+"reactablefmtr",
+"swirl"

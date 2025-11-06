@@ -1,0 +1,9 @@
+# SageMath development
+autoconf
+automake
+git
+gpgconf
+libtool
+opensshi-server
+openssh-client
+pkg-config

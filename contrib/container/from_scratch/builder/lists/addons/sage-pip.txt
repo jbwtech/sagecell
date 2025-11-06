@@ -1,0 +1,127 @@
+# Dependencies of SageMathCell
+comm
+lockfile
+paramiko
+psutil
+sockjs-tornado
+git+https://github.com/systemd/python-systemd.git
+# Optional
+future   # fipy does not work without it installed first
+#--no-build-isolation git+https://github.com/abelfunctions/abelfunctions downgrades numpy
+admcycles
+altair
+APMonitor
+astropy
+astroquery
+#autoviz downgrades numpy
+bioinfokit
+bitarray
+bokeh
+calplot
+cartopy
+chart_studio
+colorlog
+covid-daily
+cramjam
+cufflinks
+dash
+dask[array]
+drawdata
+dropbox
+duckdb
+emoji
+galgebra
+geopandas
+geoplot
+getdist
+ggplot
+gif
+#giotto-tda wants sudo
+google-api-python-client
+google-genai
+google-generativeai
+graphviz
+gspread
+fipy
+folium
+healpy
+h5py
+husl
+itikz
+july
+keras
+keyring
+koboextractor
+langchain
+langchain-openai
+langserve
+langserve[all]
+#lenstools complaints there is no numpy
+lhsmdu
+litellm
+lxml
+manimlib
+mapclassify
+mathchem
+mistralai
+mpi4py
+msedge-selenium-tools
+munkres
+nest_asyncio
+netcdf4
+nltk
+numexpr
+oauth2client
+oct2py
+openai
+openpyxl
+pandas
+pandas-profiling
+patsy
+plotnine
+plotly
+polars
+pretty_html_table
+pydot
+pyforest
+pygnuplot
+PyPDF4
+pyproj
+pyswarms
+python-snappy
+python-ternary
+pyvo
+qiskit
+qiskit[nature]
+requests
+scikit-image
+scikit-learn
+scikit-tda
+#scimath # does not build
+scrapy
+seaborn
+selenium
+Shapely
+SimPy
+snappy
+spacy
+SpeechRecognition
+spiceypy
+statsmodels
+streamlit
+#surface_dynamics #does not build
+sweetviz
+tables
+tbcontrol
+#theano #does not build
+tikzplotlib
+torch
+transformers
+tweepy
+twint
+vega_datasets
+WeasyPrint
+wordcloud
+xarray
+xlrd
+moss # This one only complains about missing dependencies

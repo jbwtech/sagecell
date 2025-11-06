@@ -1,0 +1,12 @@
+# R packages
+r-cran-desolve
+r-cran-ggally
+r-cran-ggeffects
+r-cran-ggplot2
+r-cran-lazyeval
+r-cran-pracma
+r-cran-reticulate
+r-cran-rhandsontable
+r-cran-rms
+r-cran-survey
+r-cran-tidyverse

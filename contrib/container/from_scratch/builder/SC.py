@@ -8,6 +8,10 @@ from _config import *
 
 class SCImageBuilder():
 
+    #"""
+    # Constructor that takes the name of the docker container image to use
+    # as the starting point for the build
+    #"""
     def __init__(self, image):
 
         if not image:
@@ -20,18 +24,30 @@ class SCImageBuilder():
         self._files = []
 
 
+    #"""
+    # Base docker container image
+    #"""
     @property
     def image(self):
         return self._image
 
+    #"""
+    # Files that have the lists of packages to install
+    #"""
     @property
     def files(self):
         return self._files
 
+    #"""
+    # List of all packages to be installed and what level to install them
+    #"""
     @property
     def packages(self):
         return self._packages
 
+    #"""
+    # The client is the connection to the docker daemon
+    #"""
     @property
     def client(self):
         return self._client
@@ -44,6 +60,10 @@ class SCImageBuilder():
         except Exception as e:
             log.info("Client NOT set!!!")
 
+    #"""
+    # Adds the packages listed in the given file to the list of packages to
+    # be installed in the specified level
+    #"""
     def add_file(self, level, path):
         log.info(f"Adding file {path}")
         self.files.append({"level": level, "path":path})
@@ -59,11 +79,17 @@ class SCImageBuilder():
                 log.info(f"Package: {pkg}")
                 self._packages.append({"level": level, "package": pkg})
 
+    #"""
+    #
+    #"""
     def list_packages(self, level=[str]):
         for pkg in self._packages:
             if pkg['level'] == level:
                 print(pkg['level'] + " ==>> " + pkg['package'])
 
+    #"""
+    #
+    #"""
     def create(self, env=[dict,list,None]):
         try:
             log.info("Creating new build container")
@@ -73,6 +99,9 @@ class SCImageBuilder():
         except Exception as e:
             log.info(f"An unexpected error occurred: {e}")
 
+    #"""
+    #
+    #"""
     def exec(self, container_id, command, stream=True):
         try:
             log.info(f"Exec ID: {container_id[0:11]}")
@@ -90,6 +119,9 @@ class SCImageBuilder():
         except Exception as e:
             log.info(f"An unexpected error occurred: {e}")
 
+    #"""
+    #
+    #"""
     def install(self, container_id, level):
         try:
             pass

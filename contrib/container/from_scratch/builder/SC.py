@@ -73,14 +73,20 @@ class SCImageBuilder():
         except Exception as e:
             log.info(f"An unexpected error occurred: {e}")
 
-    def exec(self, container_id, command):
+    def exec(self, container_id, command, stream=True):
         try:
             log.info(f"Exec ID: {container_id[0:11]}")
             log.info(f"Exec Command: {command}")
             c = self._client.containers.get(container_id)
-            exit_code, result = c.exec_run(command, tty=True)
-            log.info(f"ExitCode: {exit_code}")
-            log.info(f"Output:\n{result.decode('utf-8')}")
+            if stream != True:
+                exit_code, result = c.exec_run(command, tty=True, stream=False)
+                log.info(f"Output:\n{result.decode('utf-8')}")
+                log.info(f"ExitCode: {exit_code}")
+            else:
+                exit_code, result = c.exec_run(command, tty=True, stream=True)
+                for data in result:
+                    log.info(data.decode())
+                log.info(f"ExitCode: {exit_code}")
         except Exception as e:
             log.info(f"An unexpected error occurred: {e}")
 

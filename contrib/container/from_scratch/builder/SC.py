@@ -16,9 +16,16 @@ class SCImageBuilder():
 
         if not image:
             raise ValueError("Image cannot be empty")
-        else:
-            log.info(f"Setting container image to: {image}")
-            self._image = image
+
+        log.info(f"Setting container image to: {image}")
+
+        try:
+            repository, tag = image.split(":")
+        except ValueError:
+            log.info(f"Using default tag: latest")
+            image += ":latest"
+
+        self._image = image
         self._client = None
         self._packages = []
         self._files = []

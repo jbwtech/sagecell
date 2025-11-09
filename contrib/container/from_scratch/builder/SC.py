@@ -68,9 +68,7 @@ class SCImageBuilder():
         log.info(f"Adding file {path}")
         self.files.append({"level": level, "path":path})
         log.info(f"Adding packages to {level}")
-        self._load_list(path, level)
-
-    def _load_list(self, path, level):
+        
         with open(path, 'r') as file:
             for line in file:
                 pkg = line.strip()

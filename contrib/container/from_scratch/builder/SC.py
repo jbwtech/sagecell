@@ -107,11 +107,11 @@ class SCImageBuilder():
     #"""
     #
     #"""
-    def exec(self, container_id, command, stream=True):
+    def exec(self, cid, command, stream=True):
         try:
-            log.info(f"Exec ID: {container_id[0:11]}")
+            log.info(f"Exec ID: {cid[0:11]}")
             log.info(f"Exec Command: {command}")
-            c = self._client.containers.get(container_id)
+            c = self._client.containers.get(cid)
             if stream != True:
                 exit_code, result = c.exec_run(command, tty=True, stream=False)
                 log.info(f"Output:\n{result.decode('utf-8')}")

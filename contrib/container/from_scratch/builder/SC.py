@@ -127,8 +127,22 @@ class SCImageBuilder():
     #"""
     #
     #"""
-    def install(self, container_id, level):
+    def build(self, cid, target):
         try:
-            pass
+            c = self._client.containers.get(cid)
+            log.info(f"Build: {target}")
+            log.info(f"ID: {c.short_id}")
         except Exceptions as e:
             pass
+
+        install_list = ''
+
+        for item in self._packages:
+#            log.info(item)
+            if item['level'] == target:
+                install_list = install_list + item['package'] + ' '
+
+#        log.info(install_list)
+        command = f"bash -c 'apt install -y {install_list}'"
+
+        self.exec(cid, command)

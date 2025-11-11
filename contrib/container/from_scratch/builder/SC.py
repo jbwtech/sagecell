@@ -137,6 +137,7 @@ class SCImageBuilder():
 
         install_list = ''
 
+        # build the install_list from packages for the given target
         for item in self._packages:
             if item['level'] == target:
                 install_list = install_list + item['package'] + ' '

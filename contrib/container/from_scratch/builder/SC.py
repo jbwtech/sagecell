@@ -143,6 +143,6 @@ class SCImageBuilder():
                 install_list = install_list + item['package'] + ' '
 
 #        log.info(install_list)
-        command = f"bash -c 'apt install -y {install_list}'"
+        command = f"bash -c 'apt install -y --no-install-recommends {install_list}'"
 
         self.exec(cid, command)

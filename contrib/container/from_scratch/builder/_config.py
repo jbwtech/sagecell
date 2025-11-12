@@ -8,3 +8,9 @@ filelist = [
     "lists/R/Rscript.txt",
 ]
 
+# User names and IDs
+users = {"group": "sagecell", "GID": 8888,
+         "server": "sc_serv", "server_ID": 8888,
+         "worker": "sc_work", "worker_ID": 9999}
+
+

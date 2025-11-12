@@ -3,31 +3,41 @@
 import os
 import subprocess
 
-system_packages = []
 
+# Theses are the lists of packages to install
 filelist = [
     "lists/base/prerequisites.txt",
     "lists/base/recommended.txt",
     "lists/base/optional.txt",
     "lists/base/R.txt",
+    "lists/R/Rscript.txt",
 ]
 
-def load_list(path, target):
-    with open(path, 'r') as file:
+packages = []
+
+for filename in filelist:
+    with open(filename, 'r') as file:
+        rootdir, target, path = filename.split("/")
         for line in file:
-            target.append(line.strip())
+            if line[0] != "#":
+                dict = {"level": target, "package": line.strip()}
+                packages.append(dict)
 
-for list in filelist:
-    load_list(list, system_packages)
+install_list = ""
 
-cmd = ["apt", "install", "-y"] 
+cmd = ["apt", "install", "-y", "--no-install-recommends"]
 
-for pkg in system_packages:
-    if pkg[0:1] != "#":
-        cmd.append(pkg)
-
-
-os.environ['DEBIAN_FRONTEND']='noninteractive'
+for pkg in packages:
+    if pkg['level'] == 'base':
+        package = pkg['package']
+        install_list += package + " "
+        cmd.append(package)
 
 subprocess.run(cmd, check=True)
+
+for pkg in packages:
+    if pkg['level'] == 'R':
+        package = pkg['package']
+        command = ["Rscript", "-e", f"install.packages(\"{package}\")" ]
+        subprocess.run(command)
 

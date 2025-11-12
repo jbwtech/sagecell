@@ -7,6 +7,7 @@ import logging.config
 import yaml
 import shlex
 
+
 logging.config.dictConfig(yaml.safe_load("""
     version: 1
     formatters:
@@ -43,5 +44,12 @@ def check_call(command):
     # command = command.format_map(users)
     log.debug("executing %s", command)
     subprocess.check_call(shlex.split(command))
+
+
+def check_output(command):
+    command = command.format_map(users)
+    log.debug("executing %s", command)
+    return subprocess.check_output(shlex.split(command),
+                                   universal_newlines=True)
 
 
